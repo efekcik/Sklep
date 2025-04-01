@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVerse - Twoja Strefa Gracza</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>GameVerse</h1>
+        <div class="cart-icon" onclick="toggleCart()">
+            🛒 <span class="cart-count">0</span>
+        </div>
+    </header>
+
+    <!-- Modal koszyka -->
+    <div class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Twój koszyk</h2>
+                <button class="close-cart" onclick="toggleCart()">×</button>
+            </div>
+            <div class="cart-items">
+                <!-- Tutaj będą wyświetlane produkty -->
+            </div>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Suma:</span>
+                    <span id="cart-total-amount">0 zł</span>
+                </div>
+                <button class="checkout-button" onclick="checkout()">Przejdź do kasy</button>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Produkty</a></li>
+            <li><a href="#about">O nas</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="banner">
+            <h2>Witaj w naszym sklepie!</h2>
+            <p>Witaj w GameVerse – Twojej Strefie Gracza! 🎮🔥
+
+                Jeśli kochasz gry, to jesteś we właściwym miejscu! W GameVerse znajdziesz unikalne gadżety dla prawdziwych fanów gier – figurki, plakaty, repliki i mnóstwo innych epickich rzeczy wyciągniętych wprost z Twoich ulubionych tytułów.
+                
+                Wejdź do świata gamingu i pokaż swój styl! 🚀💥</p>
+        </div>
+
+        <div class="products">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Produkt 1">
+                <h3>PlayStation 5</h3>
+                <p class="price">2499 zł</p>
+                <button class="buy-button" onclick="addToCart('PlayStation 5', 2499)">Dodaj do koszyka</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Produkt 2">
+                <h3>Xbox Series X</h3>
+                <p class="price">2299 zł</p>
+                <button class="buy-button" onclick="addToCart('Xbox Series X', 2299)">Dodaj do koszyka</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Produkt 3">
+                <h3>Nintendo Switch OLED</h3>
+                <p class="price">1499 zł</p>
+                <button class="buy-button" onclick="addToCart('Nintendo Switch OLED', 1499)">Dodaj do koszyka</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Produkt 4">
+                <h3>Figurka Kratos GoW</h3>
+                <p class="price">399 zł</p>
+                <button class="buy-button" onclick="addToCart('Figurka Kratos GoW', 399)">Dodaj do koszyka</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Produkt 5">
+                <h3>Fotel Gamingowy RGB</h3>
+                <p class="price">899 zł</p>
+                <button class="buy-button" onclick="addToCart('Fotel Gamingowy RGB', 899)">Dodaj do koszyka</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Produkt 6">
+                <h3>Słuchawki Gaming 7.1</h3>
+                <p class="price">349 zł</p>
+                <button class="buy-button" onclick="addToCart('Słuchawki Gaming 7.1', 349)">Dodaj do koszyka</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Produkt 7">
+                <h3>Klawiatura Mechaniczna RGB</h3>
+                <p class="price">449 zł</p>
+                <button class="buy-button" onclick="addToCart('Klawiatura Mechaniczna RGB', 449)">Dodaj do koszyka</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Produkt 8">
+                <h3>Mysz Gaming 16000 DPI</h3>
+                <p class="price">299 zł</p>
+                <button class="buy-button" onclick="addToCart('Mysz Gaming 16000 DPI', 299)">Dodaj do koszyka</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Produkt 9">
+                <h3>Podkładka XXL RGB</h3>
+                <p class="price">129 zł</p>
+                <button class="buy-button" onclick="addToCart('Podkładka XXL RGB', 129)">Dodaj do koszyka</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Produkt 10">
+                <h3>Plakat Cyberpunk 2077</h3>
+                <p class="price">79 zł</p>
+                <button class="buy-button" onclick="addToCart('Plakat Cyberpunk 2077', 79)">Dodaj do koszyka</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>O nas</h3>
+                <p>GameVerse to miejsce, gdzie pasjonaci gier znajdą swoje miejsce. Naszym celem jest dostarczanie najlepszych produktów dla fanów gier.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+                <p>Email: GameVerse@sklep.pl</p>
+                <p>Telefon: 123 456 789</p>
+            </div>
+            <div class="footer-section">
+                <h3>Adres</h3>
+                <p>ul. Sokolska 26, sala WS 24</p>
+                <p>40-086 Katowice</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let cart = [];
+        let cartTotal = 0;
+
+        function toggleCart() {
+            const modal = document.querySelector('.cart-modal');
+            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            
+            updateCart();
+            updateCartCount();
+            
+            // Animacja dodania do koszyka
+            const cartIcon = document.querySelector('.cart-icon');
+            cartIcon.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                cartIcon.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = count;
+        }
+
+        function updateCart() {
+            const cartItems = document.querySelector('.cart-items');
+            cartItems.innerHTML = '';
+            cartTotal = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                cartTotal += itemTotal;
+
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">${item.price} zł</div>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <button class="quantity-btn" onclick="updateQuantity('${item.name}', ${item.quantity - 1})">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="quantity-btn" onclick="updateQuantity('${item.name}', ${item.quantity + 1})">+</button>
+                    </div>
+                    <button class="remove-item" onclick="removeItem('${item.name}')">×</button>
+                `;
+                cartItems.appendChild(itemElement);
+            });
+
+            document.getElementById('cart-total-amount').textContent = cartTotal + ' zł';
+        }
+
+        function updateQuantity(name, newQuantity) {
+            if (newQuantity < 1) {
+                removeItem(name);
+                return;
+            }
+
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.quantity = newQuantity;
+                updateCart();
+                updateCartCount();
+            }
+        }
+
+        function removeItem(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCart();
+            updateCartCount();
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Twój koszyk jest pusty!');
+                return;
+            }
+            
+            alert('Dziękujemy za zakupy! Twoje zamówienie zostało przyjęte.');
+            cart = [];
+            updateCart();
+            updateCartCount();
+            toggleCart();
+        }
+    </script>
+</body>
+</html>
+
+
