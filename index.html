@@ -34,6 +34,47 @@
         </div>
     </div>
 
+    <!-- Modal płatności -->
+    <div class="payment-modal">
+        <div class="payment-content">
+            <div class="payment-header">
+                <h2>Dane do płatności</h2>
+                <button class="close-payment" onclick="togglePayment()">×</button>
+            </div>
+            <form class="payment-form" onsubmit="processPayment(event)">
+                <div class="form-group">
+                    <label for="card-number">Numer karty</label>
+                    <input type="text" id="card-number" placeholder="XXXX XXXX XXXX XXXX" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expiry-date">Data ważności</label>
+                        <input type="text" id="expiry-date" placeholder="MM/RR" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" placeholder="XXX" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="card-name">Imię i nazwisko posiadacza karty</label>
+                    <input type="text" id="card-name" placeholder="Imię i nazwisko" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="xyz@email.pl" required>
+                </div>
+                <div class="payment-summary">
+                    <div class="payment-total">
+                        <span>Do zapłaty:</span>
+                        <span id="payment-total-amount">0 zł</span>
+                    </div>
+                    <button type="submit" class="pay-button">Zapłać</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <nav>
         <ul>
             <li><a href="#home">Home</a></li>
@@ -53,7 +94,33 @@
                 Wejdź do świata gamingu i pokaż swój styl! 🚀💥</p>
         </div>
 
-        <div class="products">
+        <!-- Sekcja O nas -->
+        <div class="about-section" id="about">
+            <h2>O nas</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Nasza Historia</h3>
+                    <p>GameVerse powstało z pasji do gier i chęci dzielenia się tą pasją z innymi. Jako zapaleni gracze, doskonale rozumiemy, jak ważne są dla Was gadżety związane z ulubionymi tytułami. Dlatego stworzyliśmy miejsce, gdzie każdy fan gier znajdzie coś dla siebie.</p>
+                    
+                    <h3>Nasza Misja</h3>
+                    <p>Naszym celem jest dostarczanie najwyższej jakości produktów, które pozwolą Wam wyrazić swoją miłość do gier. Każdy przedmiot w naszym sklepie jest starannie wyselekcjonowany, aby spełniał najwyższe standardy jakości i autentyczności.</p>
+                    
+                    <h3>Dlaczego My?</h3>
+                    <ul>
+                        <li>Autentyczne produkty z oficjalnych źródeł</li>
+                        <li>Szybka i bezpieczna dostawa</li>
+                        <li>Przyjazna obsługa klienta</li>
+                        <li>Regularne nowości i promocje</li>
+                        <li>Wsparcie dla społeczności graczy</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="https://i.etsystatic.com/24433473/r/il/ba026f/3584208411/il_794xN.3584208411_jt9l.jpg" alt="Nasz zespół">
+                </div>
+            </div>
+        </div>
+
+        <div class="products" id="products">
             <div class="product-card">
                 <img src="https://i.etsystatic.com/33450550/r/il/68e2bf/6690851959/il_794xN.6690851959_njuc.jpg" alt="Produkt 1">
                 <h3>Plakat z Life is Strange</h3>
@@ -154,6 +221,11 @@
             modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
         }
 
+        function togglePayment() {
+            const modal = document.querySelector('.payment-modal');
+            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+        }
+
         function addToCart(name, price) {
             const existingItem = cart.find(item => item.name === name);
             
@@ -234,14 +306,37 @@
                 return;
             }
             
-            alert('Dziękujemy za zakupy! Twoje zamówienie zostało przyjęte.');
+            document.getElementById('payment-total-amount').textContent = cartTotal + ' zł';
+            togglePayment();
+        }
+
+        function processPayment(event) {
+            event.preventDefault();
+            
+            // Tutaj można dodać logikę przetwarzania płatności
+            alert('Płatność zakończona pomyślnie! Dziękujemy za zakupy.');
+            
+            // Resetowanie koszyka
             cart = [];
             updateCart();
             updateCartCount();
+            togglePayment();
             toggleCart();
         }
+
+        // Dodaj płynne przewijanie do sekcji
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
-
-
